@@ -91,5 +91,30 @@ public class Auxiliares {
             return false;
         }
     }
+    
+    //Función que pide un número en un rango (incluidos)
+    public static int pedirNumeroRango(String mensaje, int min, int max){
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int num = 0;
+        boolean error;
+        do {
+            try {
+                System.out.println(mensaje);
+                num = Integer.parseInt(br.readLine());
+                if(num >= min && num <= max){
+                    error = false;
+                }else{
+                    error = true;
+                }
+            } catch (IOException ex) {
+                System.out.println("Error de entrada / salida.");
+                error = true;
+            } catch (NumberFormatException ex) {
+                System.out.println("Debes introducir un número entero.");
+                error = true;
+            }
+        } while (error);
+        return num;
+    }
 
 }
