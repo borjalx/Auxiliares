@@ -104,6 +104,7 @@ public class Auxiliares {
                 if(num >= min && num <= max){
                     error = false;
                 }else{
+                    System.out.println("INFO - Debes introducir un número entre " + min + " y " + max + " (ambos incluídos)");
                     error = true;
                 }
             } catch (IOException ex) {
