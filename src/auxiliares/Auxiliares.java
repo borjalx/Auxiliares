@@ -8,6 +8,8 @@ package auxiliares;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -116,6 +118,56 @@ public class Auxiliares {
             }
         } while (error);
         return num;
+    }
+    
+    //Función que devuelve un número random entre un rango de números (mínimo y máximo) incluidos
+    public static int numeroRandom(int min, int max){
+        int n = (int) Math.floor(Math.random()*(max-min+1)+min);
+        return n;
+    }
+    
+    //Función para solicitar un DNI
+    public static String pedirDNI(String mensaje){
+        String dni = "";
+        boolean isIt = false;
+        do {            
+            dni = pedirCadena(mensaje);
+            
+            //comprobamos que tenga 9 dígitos
+            //comprobamos que los 8 primeros sean números
+            //comprobamos que el último dígito es una letra (min. o may.)
+            Pattern pat = Pattern.compile("\\d{8}[A-HJ-NP-TV-Z]");
+            Matcher mat = pat.matcher(dni);
+            if (mat.matches()) {
+                isIt = true;
+            }else{
+                System.out.println("DNI 8 primeros dígitos números, último dígito letra.");
+            }
+        } while (isIt);
+        
+        return dni;
+    }
+    
+    //Función para solicitar un número de teléfono (ESPAÑA)
+    public static String pedirNTelefono(String mensaje){
+        String ntel = "";
+        boolean isIt = false;
+        do {            
+            ntel = pedirCadena(mensaje);
+            
+            //comprobamos que tenga 9 dígitos
+            //comprobamos que los 8 primeros sean números
+            //comprobamos que el último dígito es una letra (min. o may.)
+            Pattern pat = Pattern.compile("/^[9|6|7][0-9]{8}$/");
+            Matcher mat = pat.matcher(ntel);
+            if (mat.matches()) {
+                isIt = true;
+            }else{
+                System.out.println("Teléfono debe empezar por 6,9 o 7 y 9 dígitos números.");
+            }
+        } while (isIt);
+        
+        return ntel;
     }
 
 }
