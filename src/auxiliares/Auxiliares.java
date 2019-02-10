@@ -136,21 +136,22 @@ public class Auxiliares {
             //comprobamos que tenga 9 dígitos
             //comprobamos que los 8 primeros sean números
             //comprobamos que el último dígito es una letra (min. o may.)
-            Pattern pat = Pattern.compile("\\d{8}[A-HJ-NP-TV-Z]");
+            //Pattern pat = Pattern.compile("\\d{8}[A-HJ-NP-TV-Z]");
+            Pattern pat = Pattern.compile("\\d{8}[a-zA-Z]");
             Matcher mat = pat.matcher(dni);
             if (mat.matches()) {
                 isIt = true;
             }else{
                 System.out.println("DNI 8 primeros dígitos números, último dígito letra.");
             }
-        } while (isIt);
+        } while (!isIt);
         
         return dni;
     }
     
     //Función para solicitar un número de teléfono (ESPAÑA)
     public static String pedirNTelefono(String mensaje){
-        String ntel = "";
+        String ntel;
         boolean isIt = false;
         do {            
             ntel = pedirCadena(mensaje);
@@ -158,14 +159,16 @@ public class Auxiliares {
             //comprobamos que tenga 9 dígitos
             //comprobamos que los 8 primeros sean números
             //comprobamos que el último dígito es una letra (min. o may.)
+            //BORRAR - 
             Pattern pat = Pattern.compile("/^[9|6|7][0-9]{8}$/");
             Matcher mat = pat.matcher(ntel);
             if (mat.matches()) {
                 isIt = true;
             }else{
-                System.out.println("Teléfono debe empezar por 6,9 o 7 y 9 dígitos números.");
+                System.out.println("Teléfono debe constar de 9 numeros y empezar por 6,9 o 7.");
             }
-        } while (isIt);
+        } while (!isIt);
+
         
         return ntel;
     }
